@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "exit 0",
+    "test": "jest --detectOpenHandles",
     "start": "node server.js",
     "start:watch": "nodemon server.js",
     "create-tables": "node data/create-tables.js",
@@ -31,8 +31,9 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jest": "^25.1.0",
     "morgan": "^1.9.1",
     "pg": "^7.18.2",
-    "jest": "^25.1.0"
+    "supertest": "^4.0.2"
   }
 }
