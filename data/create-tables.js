@@ -26,7 +26,7 @@ async function run() {
                 image VARCHAR(256) NOT NULL,
                 brewery VARCHAR(256) NOT NULL,
                 alchoholic BOOLEAN NOT NULL,
-                ABV INTEGER NOT NULL
+                ABV FLOAT NOT NULL
             );
         `);
 
