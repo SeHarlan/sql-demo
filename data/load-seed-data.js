@@ -20,11 +20,11 @@ async function run() {
                 // This is the query to insert a cat into the db.
                 // First argument is the function is the "parameterized query"
                 return client.query(`
-                    INSERT INTO beers (name, type, image, brewery, alchoholic, ABV)
-                    VALUES ($1, $2, $3, $4, $5, $6);
+                    INSERT INTO beers (name, beerID, type, image, brewery, alchoholic, ABV)
+                    VALUES ($1, $2, $3, $4, $5, $6, $7);
                 `,
                     // Second argument is an array of values for each parameter in the query:
-                [beer.name, beer.type, beer.image, beer.brewery, beer.alchoholic, beer.ABV]);
+                [beer.name, beer.beerId, beer.type, beer.image, beer.brewery, beer.alchoholic, beer.ABV]);
 
             })
         );
