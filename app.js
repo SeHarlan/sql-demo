@@ -35,6 +35,10 @@ app.get('/api/beers', async(req, res) => {
     }
 });
 
+app.get('*', (req, res) => {
+    res.json({ home: 'page' });
+});
+
 // http method and path...
-exports.module = { app: app };
+module.exports = { app: app };
 
