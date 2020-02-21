@@ -22,6 +22,7 @@ async function run() {
             CREATE TABLE beers (
                 id SERIAL PRIMARY KEY NOT NULL,
                 name VARCHAR(256) NOT NULL,
+                beerId VARCHAR(256) NOT NULL,
                 type VARCHAR(256) NOT NULL,
                 image VARCHAR(256) NOT NULL,
                 brewery VARCHAR(256) NOT NULL,
@@ -30,7 +31,6 @@ async function run() {
             );
         `);
 
-        console.log('create tables complete');
     }
     catch (err) {
         // problem? let's see the error...
