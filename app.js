@@ -35,6 +35,22 @@ app.get('/api/beers', async(req, res) => {
     }
 });
 
+app.get('/api/beer/:id?', async(req, res) => {
+    try {
+        const itemId = req.params.id;
+        const result = await client.query(`
+            SELECT *
+            FROM beers
+            WHERE id=$1
+        `, [itemId]);
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
 app.get('*', (req, res) => {
     res.json({ home: 'page' });
 });
