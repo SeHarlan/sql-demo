@@ -1,56 +1,56 @@
 module.exports = [
     {
         name: 'Belgian White',
-        beerId: 'belgian-white',
-        type: 'Wheat',
+        typeId: 1,
         image: 'blueMoon.jpg',
         brewery: 'Blue Moon',
         alchoholic: true,
-        ABV: 5.4
+        ABV: 5.4,
+        urlImage: false,
     },
     {
         name: 'Volatile Substance',
-        beerId: 'volatile-substance',
-        type: 'IPA',
+        typeId: 2,
         image: 'volatileSubstance.jpg',
         brewery: 'Von Ebert Brewing',
         alchoholic: true,
-        ABV: 6.7
+        ABV: 6.7,
+        urlImage: false
     },
     {
         name: 'Quiescence',
-        beerId: 'quiescence',
-        type: 'Sour',
+        typeId: 3,
         image: 'quiescence.jpg',
         brewery: 'Breakside Brewery',
         alchoholic: true,
-        ABV: 5.9
+        ABV: 5.9,
+        urlImage: false
     },
     {
         name: 'Jammy Pants',
-        beerId: 'jammy-pants',
-        type: 'Sour',
+        typeId: 3,
         image: 'jammyPants.jpg',
         brewery: 'Great Notion Brewing',
         alchoholic: true,
-        ABV: 7.0
+        ABV: 7.0,
+        urlImage: false
     },
     {
         name: 'Yasuni',
-        beerId: 'yasuni',
-        type: 'IPA',
+        typeId: 2,
         image: 'yasuni.jpg',
         brewery: 'Old Town Brewing',
         alchoholic: true,
-        ABV: 6.5
+        ABV: 6.5,
+        urlImage: false
     },
     {
         name: 'Heineken 0.0',
-        beerId: 'heineken0.0',
-        type: 'Lager',
+        typeId: 4,
         image: 'heineken00.jpg',
         brewery: 'Heineken',
         alchoholic: false,
-        ABV: 0.0
+        ABV: 0.0,
+        urlImage: false
     },
 ];

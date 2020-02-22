@@ -22,14 +22,21 @@ async function run() {
             CREATE TABLE beers (
                 id SERIAL PRIMARY KEY NOT NULL,
                 name VARCHAR(256) NOT NULL,
-                beerId VARCHAR(256) NOT NULL,
-                type VARCHAR(256) NOT NULL,
+                type_id INTEGER NOT NULL,
                 image VARCHAR(256) NOT NULL,
                 brewery VARCHAR(256) NOT NULL,
                 alchoholic BOOLEAN NOT NULL,
-                ABV FLOAT NOT NULL
+                ABV FLOAT NOT NULL,
+                url_image BOOLEAN NOT NULL
             );
         `);
+
+        await client.query(`
+            CREATE TABLE types (
+                id SERIAL PRIMARY KEY NOT NULL,
+                type VARCHAR(256) NOT NULL
+            )
+        `)
 
     }
     catch (err) {

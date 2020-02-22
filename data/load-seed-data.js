@@ -3,6 +3,7 @@ const pg = require('pg');
 const Client = pg.Client;
 // import our seed data:
 const beers = require('./beers.js');
+const types = require('./types.js');
 
 run();
 
@@ -17,16 +18,20 @@ async function run() {
             // for every cat data, we want a promise to insert into the db
             beers.map(beer => {
 
-                // This is the query to insert a cat into the db.
-                // First argument is the function is the "parameterized query"
                 return client.query(`
-                    INSERT INTO beers (name, beerID, type, image, brewery, alchoholic, ABV)
+                    INSERT INTO beers (name, type_id, image, brewery, alchoholic, ABV, url_image)
                     VALUES ($1, $2, $3, $4, $5, $6, $7);
                 `,
-                    // Second argument is an array of values for each parameter in the query:
-                [beer.name, beer.beerId, beer.type, beer.image, beer.brewery, beer.alchoholic, beer.ABV]);
+                    
+                [beer.name, beer.typeId, beer.image, beer.brewery, beer.alchoholic, beer.ABV, beer.urlImage]);
 
-            })
+            }),
+            types.map(type => {
+                return client.query(`
+                        INSERT INTO types (type)
+                        VALUES ($1);
+                    `, [type]);
+            })    
         );
 
 
