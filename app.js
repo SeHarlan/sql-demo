@@ -31,7 +31,7 @@ app.get('/api/beers', async(req, res) => {
             SELECT *
                 FROM beers
             JOIN types
-                ON beers.typeId = types.id;
+                ON beers.type_id = types.id;
         `);
         res.json(result.rows);
     } catch (err) {
