@@ -18,9 +18,14 @@ client.connect();
 const app = express();
 app.use(morgan('dev'));
 app.use(cors());
+app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // API Routes
-app.get('/api/beers', async (req, res) => {
+// Create file path for getting all beers
+app.get('/api/beers', async(req, res) => {
     try {
         const result = await client.query(`
             SELECT *
@@ -35,7 +40,27 @@ app.get('/api/beers', async (req, res) => {
     }
 });
 
-app.get('/api/beer/:id?', async(req, res) => {
+// Create file path for adding a beer to node server
+app.post('/api/beers', async(req, res) => {
+    try {
+        const result = await client.query(`
+            INSERT INTO beers (name, type_id, image, brewery, alcoholic, ABV, url_image)
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING *;
+        `,
+            // pass the values of the array so that PG.client can sanitize them
+        [req.name, req.typeId, req.image, req.brewery, req.alcoholic, req.ABV, req.urlImage]
+        );
+        res.json(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
+// Create file path for getting a beer by id
+app.get('/api/beer/:id', async(req, res) => {
     try {
         const itemId = req.params.id;
         const result = await client.query(`
@@ -43,6 +68,22 @@ app.get('/api/beer/:id?', async(req, res) => {
             FROM beers
             WHERE id=$1
         `, [itemId]);
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
+// Create file path for getting beers by type
+app.get('/api/types', async(req, res) => {
+    try {
+        const result = await client.query(`
+            SELECT * 
+            FROM types
+            ORDER BY type
+        `);
         res.json(result.rows);
     } catch (err) {
         res.status(500).json({

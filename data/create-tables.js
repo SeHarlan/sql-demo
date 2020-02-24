@@ -19,10 +19,15 @@ async function run() {
     
         // run a query to create tables
         await client.query(`
+            CREATE TABLE types (
+                id SERIAL PRIMARY KEY NOT NULL,
+                type VARCHAR(256) NOT NULL
+            );
+            
             CREATE TABLE beers (
                 id SERIAL PRIMARY KEY NOT NULL,
                 name VARCHAR(256) NOT NULL,
-                type_id INTEGER NOT NULL,
+                type_id INTEGER NOT NULL REFERENCES types(id),
                 image VARCHAR(256) NOT NULL,
                 brewery VARCHAR(256) NOT NULL,
                 alchoholic BOOLEAN NOT NULL,
@@ -30,13 +35,6 @@ async function run() {
                 url_image BOOLEAN NOT NULL
             );
         `);
-
-        await client.query(`
-            CREATE TABLE types (
-                id SERIAL PRIMARY KEY NOT NULL,
-                type VARCHAR(256) NOT NULL
-            )
-        `)
 
     }
     catch (err) {
