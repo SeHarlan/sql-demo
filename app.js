@@ -20,7 +20,7 @@ app.use(morgan('dev'));
 app.use(cors());
 
 // API Routes
-app.get('/api/beers', async (req, res) => {
+app.get('/api/beers', async(req, res) => {
     try {
         const result = await client.query(`
             SELECT *
