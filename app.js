@@ -81,9 +81,19 @@ app.get('/api/beer/:id', async(req, res) => {
     try {
         const itemId = req.params.id;
         const result = await client.query(`
-            SELECT *
+            SELECT 
+                beer_id,
+                name,
+                image,
+                brewery,
+                alcoholic,
+                ABV,
+                url_image,
+                types.type as type
             FROM beers
-            WHERE beers.beer_id = $1
+            JOIN types
+            ON beers.type_id = types.id
+            WHERE beers.beer_id = $1;
         `, [itemId]);
         res.json(result.rows);
     } catch (err) {
