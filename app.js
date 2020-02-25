@@ -35,7 +35,8 @@ app.get('/api/beers', async(req, res) => {
         const result = await client.query(`
             SELECT *
             FROM beers
-            
+            JOIN types
+            ON beers.type_id = types.type
         `);
         res.json(result.rows);
     } catch (err) {
