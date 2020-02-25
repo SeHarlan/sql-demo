@@ -42,7 +42,7 @@ app.get('/api/beers', async(req, res) => {
                 alcoholic,
                 ABV,
                 url_image,
-                types.type as type,
+                types.type as type
             FROM beers
             JOIN types
             ON beers.type_id = types.id;
