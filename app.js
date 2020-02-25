@@ -28,15 +28,15 @@ app.use(express.urlencoded({ extended: true }));
 
 //---------took out but saved for testing
 //JOIN types
-//ON beers.type_id = types.type;
+//ON beers.type_id = types.id;
+
 
 app.get('/api/beers', async(req, res) => {
     try {
         const result = await client.query(`
             SELECT *
             FROM beers
-            JOIN types
-            ON beers.type_id = types.id
+            
         `);
         res.json(result.rows);
     } catch (err) {

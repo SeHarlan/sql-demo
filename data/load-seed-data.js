@@ -29,14 +29,15 @@ async function run() {
                 const type = savedTypes.find(type => {
                     return type.type === beer.type;
                 });
-
+               
                 return client.query(`
                     INSERT INTO beers (name, type_id, image, brewery, alcoholic, ABV, url_image)
                     VALUES ($1, $2, $3, $4, $5, $6, $7);
                 `,
                     
                 [beer.name, type.id, beer.image, beer.brewery, beer.alcoholic, beer.ABV, beer.urlImage]);
-
+                
+                
             })
         );
 
