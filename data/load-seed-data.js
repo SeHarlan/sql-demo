@@ -31,11 +31,11 @@ async function run() {
                 });
 
                 return client.query(`
-                    INSERT INTO beers (name, type_id, image, brewery, alchoholic, ABV, url_image)
+                    INSERT INTO beers (name, type_id, image, brewery, alcoholic, ABV, url_image)
                     VALUES ($1, $2, $3, $4, $5, $6, $7);
                 `,
                     
-                [beer.name, type.id, beer.image, beer.brewery, beer.alchoholic, beer.ABV, beer.urlImage]);
+                [beer.name, type.id, beer.image, beer.brewery, beer.alcoholic, beer.ABV, beer.urlImage]);
 
             })
         );

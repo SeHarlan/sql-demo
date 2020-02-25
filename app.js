@@ -31,7 +31,7 @@ app.get('/api/beers', async(req, res) => {
             SELECT *
             FROM beers
             JOIN types
-            ON beers.type_id = types.id;
+            ON beers.type_id = types.type;
         `);
         res.json(result.rows);
     } catch (err) {
@@ -113,7 +113,7 @@ app.put('/api/beers', async(req, res) => {
         res.status(500).json({
             error: err.message || err
         });
-    }
+    } 
 });
 
 // Create file path for deleting a beer by its id
