@@ -15,7 +15,7 @@ describe('/GET /api/beers', () => {
                     type: expect.any(String),
                     image: expect.any(String),
                     brewery: expect.any(String),
-                    alchoholic: expect.any(Boolean),
+                    alcoholic: expect.any(Boolean),
                     abv: expect.any(Number)
                 }
             );

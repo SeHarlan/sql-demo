@@ -25,13 +25,17 @@ app.use(express.urlencoded({ extended: true }));
 
 // API Routes
 // Create file path for getting all beers
+
+//---------took out but saved for testing
+//JOIN types
+//ON beers.type_id = types.type;
+
 app.get('/api/beers', async(req, res) => {
     try {
         const result = await client.query(`
             SELECT *
             FROM beers
-            JOIN types
-            ON beers.type_id = types.type;
+            
         `);
         res.json(result.rows);
     } catch (err) {
@@ -42,7 +46,9 @@ app.get('/api/beers', async(req, res) => {
 });
 
 // Create file path for adding a beer to node server
-app.post('/api/create', async(req, res) => {
+
+//_________if the origional beer data has beer type and not type_id, shouldnt this as well?
+app.post('/api/beers', async(req, res) => {
     try {
         const result = await client.query(`
             INSERT INTO beers (name, type_id, image, brewery, alcoholic, ABV, url_image)
@@ -95,16 +101,17 @@ app.get('/api/types', async(req, res) => {
 // Create file path for updating beers
 app.put('/api/beers', async(req, res) => {
     try {
+        //______how will the body have the id?
         const itemId = req.body.id;
         const result = await client.query(`
             UPDATE beers
             SET name = '${req.body.name}',
-                type_id = '${req.body.type_id}',
+                type_id = '${req.body.typeId}',
                 image = '${req.body.image}', 
                 brewery = '${req.body.brewery}', 
                 alcoholic = '${req.body.alcoholic}', 
                 ABV = '${req.body.ABV}', 
-                url_image = '${req.body.url_image}'
+                url_image = '${req.body.urlImage}'
                 ),
             WHERE id = ${itemId};
         `);
