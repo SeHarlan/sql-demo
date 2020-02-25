@@ -34,9 +34,18 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/api/beers', async(req, res) => {
     try {
         const result = await client.query(`
-            SELECT *
+            SELECT 
+                beer_id,
+                name,
+                image,
+                brewery,
+                alcoholic,
+                ABV,
+                url_image,
+                types.type as type,
             FROM beers
-            
+            JOIN types
+            ON beers.type_id = types.id;
         `);
         res.json(result.rows);
     } catch (err) {
@@ -74,7 +83,7 @@ app.get('/api/beer/:id', async(req, res) => {
         const result = await client.query(`
             SELECT *
             FROM beers
-            WHERE beers.id = $1
+            WHERE beers.beer_id = $1
         `, [itemId]);
         res.json(result.rows);
     } catch (err) {
@@ -102,20 +111,19 @@ app.get('/api/types', async(req, res) => {
 // Create file path for updating beers
 app.put('/api/beers', async(req, res) => {
     try {
-        //______how will the body have the id?
-        const itemId = req.body.id;
+        
+        const itemId = req.body.beer_id;
         const result = await client.query(`
             UPDATE beers
-            SET name = '${req.body.name}',
-                type_id = '${req.body.typeId}',
-                image = '${req.body.image}', 
-                brewery = '${req.body.brewery}', 
-                alcoholic = '${req.body.alcoholic}', 
-                ABV = '${req.body.ABV}', 
-                url_image = '${req.body.urlImage}'
-                ),
-            WHERE id = ${itemId};
-        `);
+            SET name = $1,
+                type_id = $2,
+                image = $3, 
+                brewery = $4, 
+                alcoholic = $5, 
+                ABV = $6, 
+                url_image = $7
+            WHERE beer_id = ${itemId};
+        `, [req.body.name, req.body.typeId, req.body.image, req.body.brewery, req.body.alcoholic, req.body.ABV, req.body.urlImage]);
         res.json(result.rows);
     } catch (err) {
         res.status(500).json({
@@ -130,7 +138,7 @@ app.delete('/api/beer/:id', async(req, res) => {
         const itemId = req.params.id;
         const result = await client.query(`
         DELETE FROM beers 
-        WHERE id = $1
+        WHERE beer_id = $1
         `, [itemId]);
         res.json(result.rows);
     } catch (err) {
