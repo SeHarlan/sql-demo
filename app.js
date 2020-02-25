@@ -42,7 +42,7 @@ app.get('/api/beers', async(req, res) => {
 });
 
 // Create file path for adding a beer to node server
-app.post('/api/beers', async(req, res) => {
+app.post('/api/create', async(req, res) => {
     try {
         const result = await client.query(`
             INSERT INTO beers (name, type_id, image, brewery, alcoholic, ABV, url_image)
