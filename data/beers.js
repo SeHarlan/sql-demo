@@ -1,8 +1,8 @@
 module.exports = [
     {
         name: 'Belgian White',
-        type_id: 1,
-        // type: 'Wheat',
+        // typeId: 1,
+        type: 'Wheat',
         image: 'blueMoon.jpg',
         brewery: 'Blue Moon',
         alcoholic: true,
@@ -11,8 +11,8 @@ module.exports = [
     },
     {
         name: 'Volatile Substance',
-        type_id: 2,
-        // type: 'IPA',
+        // typeId: 2,
+        type: 'IPA',
         image: 'volatileSubstance.jpg',
         brewery: 'Von Ebert Brewing',
         alcoholic: true,
@@ -21,8 +21,8 @@ module.exports = [
     },
     {
         name: 'Quiescence',
-        type_id: 3,
-        // type: 'Sour',
+        // typeId: 3,
+        type: 'Sour',
         image: 'quiescence.jpg',
         brewery: 'Breakside Brewery',
         alcoholic: true,
@@ -31,8 +31,8 @@ module.exports = [
     },
     {
         name: 'Jammy Pants',
-        type_id: 3,
-        // type: 'Sour',
+        // typeId: 3,
+        type: 'Sour',
         image: 'jammyPants.jpg',
         brewery: 'Great Notion Brewing',
         alcoholic: true,
@@ -41,8 +41,8 @@ module.exports = [
     },
     {
         name: 'Yasuni',
-        type_id: 2,
-        // type: 'IPA',
+        // typeId: 2,
+        type: 'IPA',
         image: 'yasuni.jpg',
         brewery: 'Old Town Brewing',
         alcoholic: true,
@@ -51,8 +51,8 @@ module.exports = [
     },
     {
         name: 'Heineken 0.0',
-        type_id: 4,
-        // type: 'Lager',
+        // typeId: 4,
+        type: 'Lager',
         image: 'heineken00.jpg',
         brewery: 'Heineken',
         alcoholic: false,

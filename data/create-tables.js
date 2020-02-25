@@ -30,7 +30,7 @@ async function run() {
                 type_id INTEGER NOT NULL REFERENCES types(id),
                 image VARCHAR(256) NOT NULL,
                 brewery VARCHAR(256) NOT NULL,
-                alchoholic BOOLEAN NOT NULL,
+                alcoholic BOOLEAN NOT NULL,
                 ABV FLOAT NOT NULL,
                 url_image BOOLEAN NOT NULL
             );

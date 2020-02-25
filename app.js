@@ -99,12 +99,12 @@ app.put('/api/beers', async(req, res) => {
         const result = await client.query(`
             UPDATE beers
             SET name = '${req.body.name}',
-                type_id = '${req.body.typeId}',
+                type_id = '${req.body.type_id}',
                 image = '${req.body.image}', 
                 brewery = '${req.body.brewery}', 
                 alcoholic = '${req.body.alcoholic}', 
                 ABV = '${req.body.ABV}', 
-                url_image = '${req.body.urlImage}'
+                url_image = '${req.body.url_image}'
                 ),
             WHERE id = ${itemId};
         `);
